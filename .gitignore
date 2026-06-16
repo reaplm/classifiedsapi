@@ -35,3 +35,4 @@ build/
 ### Environment File ###
 classifieds_api.env
 postgresql_db.env
+classifieds_db.sql
