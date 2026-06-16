@@ -28,7 +28,7 @@ import lombok.ToString;
 @ToString
 @Builder
 @Entity
-@Table(name="users")
+@Table(name="users", schema = "auth")
 public class User implements UserDetails {
 
 	@Id 
