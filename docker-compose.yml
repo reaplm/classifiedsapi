@@ -8,8 +8,8 @@ services:
       ports:
          - 5432:5432
       volumes:
-         - postgresql-data:/var/lib/postgresql
-         - ./classifieds.sql:/docker-entrypoint-initdb.d/classifieds.sql  # Auto-runs on startup
+         - postgresql-data:/var/lib/postgresql/18/data
+         - ./classifieds_db.sql:/docker-entrypoint-initdb.d/classifieds_db.sql  # Auto-runs on startup
       healthcheck:
          test: ["CMD-SHELL", "pg_isready -U POSTGRES_USER -d POSTGRES_DB"]
          timeout: 10s
