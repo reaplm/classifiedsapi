@@ -2,8 +2,10 @@ package com.reaplm.classifiedsapi.model;
 
 
 import java.security.Timestamp;
+import java.time.OffsetDateTime;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -33,7 +35,7 @@ public class User implements UserDetails {
 
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private UUID id;
 	
 	@Column(unique = true, nullable = false)
 	private String email;
@@ -41,17 +43,27 @@ public class User implements UserDetails {
 	@Column(unique = true, nullable = false)
 	private String username;
 	
-	@Column(nullable = false)
+	@Column(name = "password_hash", nullable = false)
 	private String password;
 	
-	private boolean is_email_verified;
-	private boolean is_active;
-	private int failed_login_attempts;
-	private Timestamp locked_until;
-	private Timestamp last_login_at;
-	private String last_login_ip;
-	private Timestamp created_at;
-	private Timestamp updated_at;
+	@Column(name = "is_email_verified")
+	private boolean isEmailVerified;
+	
+	@Column(name = "is_active")
+	private boolean isActive;
+	
+	@Column(name = "failed_login_attempts")
+	private int failedLoginAttempts;
+	
+	@Column(name = "last_login_at")
+	private OffsetDateTime lastLoginAt;
+	
+	@Column(name = "created_at")
+	private OffsetDateTime createdAt;
+	
+	@Column(name = "updated_at")
+	private OffsetDateTime updatedAt;
+
 	
 	@Override public Collection<? extends GrantedAuthority> getAuthorities() { return List.of(); }
 	@Override public String getPassword() { return password; }
